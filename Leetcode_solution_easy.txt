@@ -1,0 +1,87 @@
+class Solution(object):
+    def defangIPaddr(self, address):
+        def_ip = []
+        mystring = ""
+        for i in address:
+            if i == ".":
+                i= "[.]"  
+            mystring+=i
+
+        return mystring
+    
+    def removeElement(self, nums, val):
+        k= 0
+        for x in nums:
+            if x != val:
+                k+=1
+        return k
+    
+ #Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack
+
+    def strStr(self, haystack, needle):
+        # result = haystack.index(needle)
+        # return result
+        i = 0
+        y = 0
+        pl_index = -1
+        for i in range(len(haystack)):
+            y = 0
+        # while y < len(needle):
+            if haystack[i] == needle[y]:
+                y+=1
+                if y == len(needle):
+                    pl_index = i + 1 - y
+                    break
+            i += 1        
+        return pl_index
+    
+    def arglength(self, array):
+        return len(array)
+
+    def getConcatenation(self, nums):
+        n = len(nums)
+        new_nums = []
+        x = 0
+        while x<2:
+            i = 0
+            for i in nums:
+                new_nums.append(i)
+            x+=1
+        return new_nums
+    
+    def buildArray(self, nums):
+        output_array = []
+        for i in nums:
+            output_array.append(nums[i])
+        return output_array
+    
+    def kWeakestRows(mat: list[list[int]], k: int):
+        output_array = []
+        for i, m in enumerate(mat[0]):
+            ans = (sum(m), i)
+            output_array.append(ans)
+        output_array.sort()
+        return [i[1] for i in output_array[:k]]
+
+    
+
+
+# haystack = "leetcode" 
+# needle = "leeto"
+
+# x = Solution().strStr(haystack=haystack, needle=needle)
+# print(x)
+
+
+    
+# address = "1.1.1.1"
+# x = Solution().defangIPaddr(address=address)
+# print(x)
+
+# nums = [0,1,2,2,3,0,4,2] 
+# val = 2
+
+# y = Solution().removeElement(nums = nums, val = val)
+# print(y)
+            
+            
