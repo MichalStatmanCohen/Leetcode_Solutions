@@ -63,25 +63,94 @@ class Solution(object):
         output_array.sort()
         return [i[1] for i in output_array[:k]]
 
+    def return_unique(self, list_to_check):
+        list_to_return = []
+        for x in list_to_check:
+            if x not in list_to_return:
+                list_to_return.append(x)
+        return list_to_return
+    
+    def create_set(self, list_to_check):
+        x = set(list_to_check)
+        x = list(x)
+        return x
+    def canConstruct1(self, ransomNote,magazine):
+        i=0
+        x=0
+        try:
+            for x in ransomNote:
+                if ransomNote[i] in magazine:
+                    magazine=magazine.replace(ransomNote[i],"",1) 
+                else:
+                    return -1
+                if i == len(ransomNote)-1:
+                    return 1
+                i+=1
+        except Exception:
+            print(traceback.format_exc())
+
+    def canConstruct(self, ransomNote,magazine):
+        mag_dict = {}
+        for char in magazine:
+            if char not in mag_dict:
+                mag_dict[char] = 1
+            else:
+                mag_dict[char] += 1
+        for char in ransomNote:
+            if char not in mag_dict:
+                return False
+            if char in mag_dict and mag_dict[char] >0:
+                mag_dict[char] -= 1
+            else:
+                return False
+        return True
+    
+    def isIsomorphic(self, s, t):
+        s_dict = {}
+        t_dict = {}
+        x=0
+        y=0
+        ss = None
+        tt= None
+        for char in s:
+            if char not in s_dict:
+                placelist =[]
+                placelist.append(x)
+                s_dict[char] = placelist
+            else:
+                s_dict[char].append(x)
+            x+=1
+        for char in t:
+            if char not in t_dict:
+                placelist =[]
+                placelist.append(y)
+                t_dict[char] = placelist
+            else:
+                t_dict[char].append(y)
+            y+=1
+        ss = list(s_dict.values())
+        tt = list(t_dict.values())
+
+        if ss == tt:           
+            return True
+        else:
+            return False
+        
+    def maxProfit(self, prices):
+        
+        profit = 0
+        price_to_buy =prices[0]
+        price_to_sell = price_to_buy
+        for i in prices:
+            if i < price_to_buy:
+                price_to_buy = i
+                price_to_sell = 0
+            if i > price_to_sell:
+                price_to_sell = i
+        profit = price_to_sell - price_to_buy
+
+        return profit
+
     
 
 
-# haystack = "leetcode" 
-# needle = "leeto"
-
-# x = Solution().strStr(haystack=haystack, needle=needle)
-# print(x)
-
-
-    
-# address = "1.1.1.1"
-# x = Solution().defangIPaddr(address=address)
-# print(x)
-
-# nums = [0,1,2,2,3,0,4,2] 
-# val = 2
-
-# y = Solution().removeElement(nums = nums, val = val)
-# print(y)
-            
-            
